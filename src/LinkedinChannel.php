@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 
 class LinkedinChannel
 {
-  public function __construct(Happyr\LinkedIn\LinkedIn $linkedin)
+  public function __construct(\Happyr\LinkedIn\LinkedIn $linkedin)
   {
       $this->linkedin = $linkedin;
   }
@@ -36,6 +36,6 @@ class LinkedinChannel
     }
     private function switchSettings($linkedinSettings)
     {
-        $this->linkedin = new Happyr\LinkedIn\LinkedIn($linkedinSettings);
+        $this->linkedin = new \Happyr\LinkedIn\LinkedIn($linkedinSettings);
     }
 }
