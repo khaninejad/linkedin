@@ -15,9 +15,9 @@ class LinkedinServiceProvider extends ServiceProvider
 
 
          $this->app->when(LinkedinChannel::class)
-          ->needs(Happyr\LinkedIn\LinkedIn::class)
+          ->needs(\Happyr\LinkedIn\LinkedIn::class)
           ->give(function () {
-              $linkedIn=new Happyr\LinkedIn\LinkedIn( config('services.linkedin.app_id'), config('services.linkedin.app_secret'));
+              $linkedIn=new \Happyr\LinkedIn\LinkedIn( config('services.linkedin.app_id'), config('services.linkedin.app_secret'));
               $linkedIn->setAccessToken(config('services.linkedin.access_token'));
               return $linkedIn;
           });
