@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\LinkedinChannel;
+namespace khaninejad\linkedin;
 
 use Illuminate\Support\Arr;
 

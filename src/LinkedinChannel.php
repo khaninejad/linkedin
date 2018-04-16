@@ -1,10 +1,10 @@
 <?php
 
-namespace NotificationChannels\LinkedinChannel;
+namespace khaninejad\linkedin;
 
-use NotificationChannels\LinkedinChannel\Exceptions\CouldNotSendNotification;
-use NotificationChannels\LinkedinChannel\Events\MessageWasSent;
-use NotificationChannels\LinkedinChannel\Events\SendingMessage;
+use khaninejad\linkedin\Exceptions\CouldNotSendNotification;
+use khaninejad\linkedin\Events\MessageWasSent;
+use khaninejad\linkedin\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
 
 class LinkedinChannel

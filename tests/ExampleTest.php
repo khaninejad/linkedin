@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\LinkedinChannel\Test;
+namespace khaninejad\linkedin\Test;
 
 class ExampleTest extends \PHPUnit_Framework_TestCase
 {

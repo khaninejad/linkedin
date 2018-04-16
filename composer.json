@@ -1,7 +1,7 @@
 {
     "name": "khaninejad/linkedin",
     "description": "This package used for send message using laravel notification service",
-    "homepage": "https://github.com/laravel-notification-channels/linkedin-channel",
+    "homepage": "https://github.com/khaninejad/linkedin",
     "license": "MIT",
     "authors": [
         {
@@ -11,8 +11,10 @@
             "role": "Developer"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.6.4",
+
         "guzzlehttp/psr7": "^1.4",
         "happyr/linkedin-api-client": "^1.0",
         "illuminate/notifications": "^5.3",
@@ -26,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\LinkedinChannel\\": "src"
+            "khaninejad\\linkedin\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\LinkedinChannel\\Test\\": "tests"
+            "khaninejad\\linkedin\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -39,6 +41,6 @@
     },
     "config": {
         "sort-packages": true
-    },
-    "minimum-stability":"dev"
+    }
+
 }
