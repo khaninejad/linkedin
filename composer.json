@@ -41,6 +41,13 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "khaninejad\\linkedin\\LinkedinServiceProvider"
+            ]
+        }
     }
 
 }
