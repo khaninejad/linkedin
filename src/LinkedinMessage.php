@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 
 class LinkedinMessage
 {
-    private function $comment;
+    private $comment;
 
     private $apiEndpoint = 'v1/people/~/shares';
 
