@@ -8,7 +8,7 @@ class LinkedinMessage
 {
     private $comment;
 
-    private $apiEndpoint = 'v1/people/~/shares';
+    public $apiEndpoint = 'v1/people/~/shares';
 
     public function __construct($comment)
     {
