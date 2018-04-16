@@ -8,11 +8,15 @@ class LinkedinMessage
 {
     private $comment;
 
-    public $apiEndpoint = 'v1/people/~/shares';
+    private $apiEndpoint = 'v1/people/~/shares';
 
     public function __construct($comment)
     {
         $this->comment = $comment;
+    }
+    public function getApiEndpoint()
+    {
+        return $this->apiEndpoint;
     }
     public function getRequestBody()
     {
