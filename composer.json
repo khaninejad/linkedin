@@ -15,7 +15,6 @@
     "prefer-stable" : true,
     "require": {
         "php": ">=5.6.4",
-        "khaninejad/linkedin": "dev-master",
         "guzzlehttp/psr7": "^1.4",
         "happyr/linkedin-api-client": "^1.0",
         "illuminate/notifications": "^5.3",
