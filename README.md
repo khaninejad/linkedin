@@ -1,36 +1,15 @@
-Use this repo as a skeleton for your new channel, once you're done please submit a Pull Request on [this repo](https://github.com/laravel-notification-channels/new-channels) with all the files.
-
-Here's the latest documentation on Laravel 5.3 Notifications System: 
-
-https://laravel.com/docs/master/notifications
-
-# A Boilerplate repo for contributions
-
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/laravel-notification-channels/:package_name/master.svg?style=flat-square)](https://travis-ci.org/laravel-notification-channels/:package_name)
-[![StyleCI](https://styleci.io/repos/:style_ci_id/shield)](https://styleci.io/repos/:style_ci_id)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/:sensio_labs_id.svg?style=flat-square)](https://insight.sensiolabs.com/projects/:sensio_labs_id)
-[![Quality Score](https://img.shields.io/scrutinizer/g/laravel-notification-channels/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/:package_name)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/laravel-notification-channels/:package_name/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravel-notification-channels/:package_name/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
-
-This package makes it easy to send notifications using [:service_name](link to service) with Laravel 5.3.
-
-**Note:** Replace ```:channel_namespace``` ```:service_name``` ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:package_name``` ```:package_description``` ```:style_ci_id``` ```:sensio_labs_id``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [composer.json](composer.json) and other files, then delete this line.
-**Tip:** Use "Find in Path/Files" in your code editor to find these keywords within the package directory and replace all occurences with your specified term.
-
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
+# Linkedin notification channel for Laravel 5.3+
 
 
+This package makes it easy to send notifications using [Linkedin](https://www.linkedin.com/developer/apps) with Laravel 5.3+.
 
 ## Contents
 
 - [Installation](#installation)
-	- [Setting up the :service_name service](#setting-up-the-:service_name-service)
+- [Setting up the Linkedin service](#setting-up-the-linkedin-service)
 - [Usage](#usage)
-	- [Available Message methods](#available-message-methods)
-- [Changelog](#changelog)
+	- [Publish post update](#publish-linkedin-status-update)
+ - [Changelog](#changelog)
 - [Testing](#testing)
 - [Security](#security)
 - [Contributing](#contributing)
@@ -40,19 +19,81 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+You can install this package via composer:
 
-### Setting up the :service_name service
+``` bash
+composer require khaninejad/linkedin@dev-master
+```
 
-Optionally include a few steps how users can set up the service.
+Next add the service provider to your `config/app.php`:
+
+```php
+...
+'providers' => [
+	...
+	 khaninejad\linkedin\LinkedinServiceProvider::class,
+],
+...
+```
+
+
+
+### Setting up the Linkedin service
+
+You will need to [create](https://www.linkedin.com/developer/apps) a Linkedin app in order to use this channel. Within in this app you will find the `keys and access tokens`. Place them inside your `.env` file. In order to load them, add this to your `config/services.php` file:
+
+```php
+...
+'linkedin' => [
+	'client_id'    => env('LINKEDIN_KEY'),
+	'client_secret' => env('LINKEDIN_SECRET'),
+	'redirect'    => env('LINKEDIN_REDIRECT_URI'),
+	'access_token'   => env('LINKEDIN_Access_TOKEN')
+]
+...
+```
+
+This will load the Linkedin app data from the `.env` file. Make sure to use the same keys you have used there like `LINKEDIN_KEY`.
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+Follow Laravel's documentation to add the channel to your Notification class.
 
-### Available Message methods
+### Publish Linkedin status update
 
-A list of all available options
+```php
+use khaninejad\linkedin\LinkedinChannel;
+use khaninejad\linkedin\LinkedinMessage;
+
+class NewsWasPublished extends Notification
+{
+
+    /**
+     * Get the notification's delivery channels.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function via($notifiable)
+    {
+        return [LinkedinChannel::class];
+    }
+
+    public function toLinkedin($notifiable)
+    {
+        return new LinkedinMessage('Laravel notifications are awesome!');
+    }
+}
+```
+
+Take a closer look at the `StatusUpdate` object. This is where the magic happens.
+````php
+public function toLinkedin($notifiable)
+{
+    return new LinkedinMessage('Laravel notifications are awesome!');
+}
+````
+
 
 ## Changelog
 
@@ -66,7 +107,7 @@ $ composer test
 
 ## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
+If you discover any security related issues, please use the issue tracker.
 
 ## Contributing
 
@@ -74,10 +115,9 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [happyr/linkedin-api-client](https://github.com/Happyr/LinkedIn-API-client)
 - [All Contributors](../../contributors)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-"# linkedin" 
